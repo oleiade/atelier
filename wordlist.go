@@ -3,7 +3,9 @@ package atelier
 // WordList holds the [EFF's wordlist].
 //
 // [EFF's wordlist]: https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
-var WordList []string = []string{
+//
+//nolint:gochecknoglobals
+var WordList = []string{
 	"abacus",
 	"abdomen",
 	"abdominal",

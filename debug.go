@@ -1,7 +1,6 @@
 package atelier
 
 import (
-	_ "embed"
 	"reflect"
 )
 
@@ -20,7 +19,7 @@ import (
 func MapAddressToWord(value any) string {
 	// hashAddress takes a pointer and hashes it to an integer.
 	hashAddressFunc := func(address uintptr) int {
-		return int(uintptr(address)) % len(WordList)
+		return int(address) % len(WordList)
 	}
 
 	valuePointer := reflect.ValueOf(value).Pointer()
