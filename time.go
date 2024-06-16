@@ -8,16 +8,6 @@ import (
 	"time"
 )
 
-package atelier
-
-import (
-"errors"
-"fmt"
-"strconv"
-"strings"
-"time"
-)
-
 // BeginningOfTime is the time the Unix clock was started.
 var BeginningOfTime = time.Date(1970, 1, 1, 0, 0, 0, 0, time.UTC)
 
@@ -115,8 +105,9 @@ func ParseTimePeriod(s string) (time.Duration, error) {
 	}
 
 	var (
-		isSingular = func(unit string) bool { return len(unit) == 1 || !strings.HasSuffix(unit, "s") }
-		isPlural   = func(unit string) bool { return !isSingular(unit) }
+		isShortForm = func(unit string) bool { return len(unit) == 1 }
+		isSingular  = func(unit string) bool { return isShortForm(unit) || !strings.HasSuffix(unit, "s") }
+		isPlural    = func(unit string) bool { return isShortForm(unit) || strings.HasSuffix(unit, "s") }
 	)
 
 	// Validate the combination of number and unit
@@ -129,6 +120,12 @@ func ParseTimePeriod(s string) (time.Duration, error) {
 
 	var duration time.Duration
 	switch unit {
+	case "s", "sec", "secs", "second", "seconds":
+		duration = time.Duration(number) * time.Second
+	case "min", "mins", "minute", "minutes":
+		duration = time.Duration(number) * time.Minute
+	case "h", "hr", "hour", "hours":
+		duration = time.Duration(number) * time.Hour
 	case "d", "day", "days":
 		duration = time.Duration(number) * 24 * time.Hour
 	case "w", "week", "weeks":

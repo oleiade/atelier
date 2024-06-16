@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func TestParsePeriod(t *testing.T) {
+func TestParseTimePeriod(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
