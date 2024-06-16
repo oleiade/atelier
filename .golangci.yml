@@ -75,7 +75,6 @@ linters:
     - forcetypeassert
     - funlen
     - gocheckcompilerdirectives
-    - gochecknoglobals
     - gocognit
     - goconst
     - gocritic
