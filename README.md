@@ -76,6 +76,31 @@ func main() {
 
 ### Tooling
 
+#### Time
+
+##### [Time points](./time.go)
+
+* `BeginningOfTime` constant: Represents the beginning of time, i.e., the Unix epoch.
+* `DaysInAWeek`, `DaysInAMonth`, `DaysInAYear` constants: Constants representing the number of days in a week, month, and year, respectively.
+* `OneDayBefore(time.Time) time.Time`: Returns the time one day before the given time.
+* `OneWeekBefore(time.Time) time.Time`: Returns the time one week before the given time.
+* `OneMonthBefore(time.Time) time.Time`: Returns the time one month before the given time.
+* `OneYearBefore(time.Time) time.Time`: Returns the time one year before the given time.
+
+##### [ISO8601 Time](./time.go)
+
+Provides an implementation of the `ISO8601Time` format representation, which is a standardized way of representing dates and times.
+This type supports JSON unmarshalling, and proves especially useful to load time from JSON APIs providing dates in ISO8601 format.
+
+##### [Period Parsing](./time.go)
+
+`ParseTimePeriod(string) (time.Duration, error)` parses a string representation of a period ("1 day", "25s", "3 years", etc...) and returns the corresponding `time.Duration`.
+
+The period string should be in the format of a number followed by a unit, such as "1d" for 1 day or "2w" for 2 weeks.
+Valid units are "d" (day), "w" (week), "m" (month), and "y" (year).
+The function returns an error if the period string is empty, contains an invalid number or unit, or has an
+invalid combination of number and unit.
+
 #### Debugging
 
 ##### [MapAddressToWord](./debug.go)
